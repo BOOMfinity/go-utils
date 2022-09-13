@@ -1,4 +1,4 @@
-module github.com/BOOMfinity/goutils
+module github.com/BOOMfinity/go-utils
 
 go 1.19
 
