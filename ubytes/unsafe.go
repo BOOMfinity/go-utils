@@ -1,16 +1,19 @@
 package ubytes
 
 import (
-	"reflect"
 	"unsafe"
 )
 
-func ToBytes(s string) []byte {
-	return (*[0x7fff0000]byte)(unsafe.Pointer(
-		(*reflect.StringHeader)(unsafe.Pointer(&s)).Data),
-	)[:len(s):len(s)]
+func ToBytes(str string) []byte {
+	if str == "" {
+		return nil
+	}
+	return unsafe.Slice(unsafe.StringData(str), len(str))
 }
 
-func ToString(b []byte) string {
-	return *(*string)(unsafe.Pointer(&b))
+func ToString(bs []byte) string {
+	if len(bs) == 0 {
+		return ""
+	}
+	return unsafe.String(unsafe.SliceData(bs), len(bs))
 }

@@ -1,7 +1,7 @@
 package broadcaster
 
 import (
-	"golang.org/x/exp/slices"
+	"slices"
 	"sync"
 )
 
@@ -108,7 +108,7 @@ func (v *Group[V]) Join() *Member[V] {
 // Leave removes specific group member and stop listening
 func (v *Group[V]) Leave(m *Member[V]) {
 	v.m.Lock()
-	index := slices.Index[*Member[V]](v.members, m)
+	index := slices.Index(v.members, m)
 	if index == -1 {
 		return
 	}
